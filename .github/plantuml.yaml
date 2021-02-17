@@ -1,0 +1,40 @@
+# /${PlantUMLのファイルが置いてあるディレクトリ}/*.puml のソースコードから画像ファイルを生成する
+# トリガー：上記のソースコードの変更・追加がpushされること
+# 実行環境：macOS Big Sur 11.0
+name: Create PlantUML Images
+
+# トリガー
+on:
+  push:
+    paths:
+      - ${PlantUMLのファイルが置いてあるディレクトリ}/*.puml #eg. docs/sequence-diagrams/*.puml
+
+# 実行内容
+jobs:
+  build:
+    runs-on: macos-11.0
+    steps:
+      #git checkout
+      - uses: actions/checkout@v2
+      #PlantUMLのパッケージインストール
+      - name: Install packages
+        run: |
+          brew install plantuml
+      #画像生成（最後のlsはGitActionのコンソール上で結果確認するため）
+      - name: Create Images
+        run: |
+          cd ./${PlantUMLのファイルが置いてあるディレクトリ}
+          for puml in `ls -a *.puml`
+          do
+            cat ./${puml} | plantuml -tsvg -p > ./${puml%.*}.svg
+          done
+          ls -l
+      #git commit & git push
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v5
+        with:
+          message: 'Create image files by GitHub Action(create-plantuml-images.yml).'
+          add: './${PlantUMLのファイルが置いてあるディレクトリ}/*'
+          push: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # ここはおまじない的に必須
