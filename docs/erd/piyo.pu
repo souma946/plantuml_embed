@@ -1,11 +1,7 @@
 @startuml
 
-' hide the spot
 hide circle
-
-' avoid problems with angled crows feet
 skinparam linetype ortho
-
 entity "Entity01" as e01 {
   *e1_id : number <<generated>>
   --
