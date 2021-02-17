@@ -7,7 +7,7 @@ name: Create PlantUML Images
 on:
   push:
     paths:
-      - ${PlantUMLのファイルが置いてあるディレクトリ}/*.puml #eg. docs/sequence-diagrams/*.puml
+      - docs/erd/*.puml #eg. docs/sequence-diagrams/*.puml
 
 # 実行内容
 jobs:
