@@ -2,7 +2,7 @@ name: generate plantuml
 on:
   push:
     paths:
-      - docs/erd/*.puml #eg. docs/sequence-diagrams/*.puml  
+      - docs/erd/*.pu #eg. docs/sequence-diagrams/*.puml  
 jobs:
   generate_plantuml:
     runs-on: ubuntu-latest
