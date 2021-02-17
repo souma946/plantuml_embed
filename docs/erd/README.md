@@ -5,8 +5,8 @@ To describe ER diagram, use plantuml. The reason why use plantuml is below.
 
 ## Rules
 - Use file extention "puml" when draw ER diagram.
-- Write <table>.md in this directory to explain table structure.
-
+- Write `table`.md in this directory to explain table structure.
+ 
 ## Information
 - plantuml ER diagram(en) https://plantuml.com/en/ie-diagram
 - plantuml ER diagram(ja) https://plantuml.com/ja/ie-diagram
